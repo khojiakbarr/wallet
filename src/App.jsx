@@ -11,16 +11,19 @@ function App() {
     switch (action.type) {
       case "name":
         return { ...state, name: action.name };
+      default:
+        return state;
     }
   }, {});
+  console.log(user);
 
   return (
-    <>
+    <userContex.Provider value={(user, dispatch)}>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
       </Routes>
-    </>
+    </userContex.Provider>
   );
 }
 
