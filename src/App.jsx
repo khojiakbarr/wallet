@@ -1,8 +1,28 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-const walletContex = createContext();
+import Login from "./components/LogIn/Login";
+import Home from "./components/Home/Home";
+import { createContext, useReducer } from "react";
+
+const userContex = createContext();
+
 function App() {
-  return <h1>HEllo</h1>;
+  const [user, dispatch] = useReducer((state, action) => {
+    switch (action.type) {
+      case "name":
+        return { ...state, name: action.name };
+    }
+  }, {});
+
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<Home />} />
+      </Routes>
+    </>
+  );
 }
 
-export { walletContex };
+export { userContex };
 export default App;
