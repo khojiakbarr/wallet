@@ -15,7 +15,7 @@ export default function Login() {
         onSubmit={handleSubmit((data) => {
           console.log(data);
           navigate("/home");
-          dispatch({ type: "name" });
+          dispatch({ type: "name", ...data });
         })}
         className="border border-gray-900 p-5 flex flex-col gap-5 rounded-md"
       >

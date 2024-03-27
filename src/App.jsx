@@ -3,6 +3,7 @@ import "./App.css";
 import Login from "./components/LogIn/Login";
 import Home from "./components/Home/Home";
 import { createContext, useReducer } from "react";
+import { v4 as id } from "uuid";
 
 const userContex = createContext();
 
@@ -11,6 +12,10 @@ function App() {
     switch (action.type) {
       case "name":
         return { ...state, name: action.name };
+
+      case "mainBalance":
+        return { ...state, mainBalance: +action.balance };
+
       default:
         return state;
     }
@@ -18,7 +23,7 @@ function App() {
   console.log(user);
 
   return (
-    <userContex.Provider value={(user, dispatch)}>
+    <userContex.Provider value={{ user, dispatch }}>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
