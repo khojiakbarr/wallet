@@ -2,31 +2,57 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Login from "./components/LogIn/Login";
 import Home from "./components/Home/Home";
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import { v4 as id } from "uuid";
 
 const userContex = createContext();
 
 function App() {
-  const [user, dispatch] = useReducer((state, action) => {
-    switch (action.type) {
-      case "name":
-        return { ...state, name: action.name };
+  const [user, dispatch] = useReducer(
+    (state, action) => {
+      switch (action.type) {
+        case "name":
+          return { ...state, name: action.name };
 
-      case "mainBalance":
-        return { ...state, mainBalance: +action.balance };
+        case "mainBalance":
+          return { ...state, balance: +action.balance };
 
-      default:
-        return state;
+        case "addCard":
+          return {
+            ...state,
+            cards: [...state.cards, { id: id(), ...action.data }],
+          };
+
+        case "update":
+          return { ...state, balance: action.upBalance };
+        default:
+          return state;
+      }
+    },
+    {
+      balance: 0,
+      cards: [],
     }
-  }, {});
-  console.log(user);
+  );
+
+  function calcBalance() {
+    let sum = 0;
+    for (let i = 0; i < user.cards.length; i++) {
+      sum += +user.cards[i].balance;
+      console.log(sum);
+    }
+    dispatch({ type: "update", upBalance: +sum });
+  }
+
+  useEffect(()=>{
+    calcBalance()
+  },[user.cards])
 
   return (
     <userContex.Provider value={{ user, dispatch }}>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<Home calcBalance={calcBalance} />} />
       </Routes>
     </userContex.Provider>
   );

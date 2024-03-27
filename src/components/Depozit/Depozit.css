@@ -1,0 +1,8 @@
+.depozit{
+  transform: translateX(-100%);
+  transition: all 0.4s ease;
+}
+
+.toggle{
+  transform: translateX(0%);
+}
