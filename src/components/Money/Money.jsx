@@ -10,8 +10,8 @@ export default function Money({ calcBalance }) {
   return (
     <div className="flex overflow-x-scroll shrink-1 gap-3 scrollBar ml-3">
       {user.cards.map((card) => {
-            return <MoneyCard key={card.id} card={card} />;
-          })}
+        return <MoneyCard key={card.id} card={card} />;
+      })}
       <Add calcBalance={calcBalance} />
     </div>
   );

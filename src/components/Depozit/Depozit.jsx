@@ -1,5 +1,6 @@
 import React from "react";
 import "./Depozit.css";
+import DepozitTable from "../DepozitTable.jsx/DepozitTable";
 
 export default function Depozit({ clas, isactive, setactive }) {
   return (
@@ -15,7 +16,7 @@ export default function Depozit({ clas, isactive, setactive }) {
           Close
         </button>
       </div>
-      
+      {/* <DepozitTable /> */}
     </div>
   );
 }
