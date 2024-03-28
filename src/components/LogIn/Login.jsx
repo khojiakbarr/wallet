@@ -13,7 +13,6 @@ export default function Login() {
       <h1 className="text-center text-gray-400 text-[40px] mb-7">Wallet App</h1>
       <form
         onSubmit={handleSubmit((data) => {
-          console.log(data);
           navigate("/home");
           dispatch({ type: "name", ...data });
         })}

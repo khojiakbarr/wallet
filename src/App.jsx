@@ -25,6 +25,9 @@ function App() {
 
         case "update":
           return { ...state, balance: action.upBalance };
+
+          // case "deposit":
+          //   return 
         default:
           return state;
       }

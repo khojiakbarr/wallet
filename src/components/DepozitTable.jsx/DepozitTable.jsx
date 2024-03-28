@@ -3,20 +3,26 @@ import { userContex } from "../../App";
 import TableItems from "../TableItems/TableItems";
 
 export default function DepozitTable() {
-  const [user, dispatch] = useContext(userContex);
-
+  const { user, dispatch } = useContext(userContex);
   return (
-    <table>
+    <table className="w-full border ">
       <thead>
-        <tr>
-          <th>Card Name</th>
-          <th>Balance</th>
+        <tr className="w-full">
+          <th className="text-white">Card Name</th>
+          <th className="text-white">Balance</th>
+          <th className="text-white">Actions</th>
         </tr>
       </thead>
-      <tbody>
-        {/* {user.cards.map((card) => {
-          return <TableItems key={card.id} card={card} />;
-        })} */}
+      <tbody className="w-full border">
+        {user.cards.map((card) => {
+          return (
+            <TableItems
+              key={card.id}
+              card={card}
+              
+            />
+          );
+        })}
       </tbody>
     </table>
   );

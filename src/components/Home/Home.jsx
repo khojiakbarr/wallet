@@ -5,9 +5,10 @@ import Depozit from "../Depozit/Depozit";
 
 export default function Home({ calcBalance }) {
   const { user, dispatch } = useContext(userContex);
-  const [isactive, setactive] = useState(false)
+  const [isactive, setactive] = useState(false);
+  
   const handleToggle = () => {
-    setactive(!isactive)
+    setactive(!isactive);
   };
 
   return (
@@ -24,11 +25,17 @@ export default function Home({ calcBalance }) {
         </h2>
       </div>
       <Money calcBalance={calcBalance} />
-      <Depozit clas={isactive? 'toggle': null} isactive={isactive} setactive={setactive}  />
+      <Depozit
+        clas={isactive ? "toggle" : null}
+        isactive={isactive}
+        setactive={setactive}
+      />
       <div className="flex justify-between px-3 mt-[100px]">
-        <button onClick={handleToggle} className="bg-[#45B68D] px-7 py-2.5 rounded-lg">Deposit</button>
-        <button className="bg-[#E8503A] px-7 py-2.5 rounded-lg">
-          Withdraw
+        <button
+          onClick={handleToggle}
+          className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 transition-all ease-linear duration-300"
+        >
+          Transaction
         </button>
       </div>
     </>
