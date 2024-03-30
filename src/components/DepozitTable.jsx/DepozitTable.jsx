@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { userContex } from "../../App";
 import TableItems from "../TableItems/TableItems";
 
-export default function DepozitTable() {
+export default function DepozitTable({isModal, setIsModal}) {
   const { user, dispatch } = useContext(userContex);
   return (
     <table className="w-full border ">
@@ -19,7 +19,8 @@ export default function DepozitTable() {
             <TableItems
               key={card.id}
               card={card}
-              
+              isModal={isModal}
+              setIsModal={setIsModal}
             />
           );
         })}

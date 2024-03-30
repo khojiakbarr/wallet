@@ -24,10 +24,14 @@ function App() {
           };
 
         case "update":
-          return { ...state, balance: action.upBalance };
+          state.cards[action.index] = {
+            ...state.cards[0],
+            balance: action.summa,
+          };
+          return state;
 
-          // case "deposit":
-          //   return 
+        // case "deposit":
+        //   return
         default:
           return state;
       }
@@ -47,9 +51,9 @@ function App() {
     dispatch({ type: "update", upBalance: +sum });
   }
 
-  useEffect(()=>{
-    calcBalance()
-  },[user.cards])
+  useEffect(() => {
+    calcBalance();
+  }, [user.cards]);
 
   return (
     <userContex.Provider value={{ user, dispatch }}>
